@@ -4,6 +4,7 @@ from ball import Ball
 from scoreboard import Scoreboard
 import time
 
+game_is_on = True
 screen = Screen()
 screen.bgcolor("black")
 screen.setup(width=700, height=600)
@@ -25,6 +26,7 @@ screen.onkey(l_paddle.up, "o")
 screen.onkey(l_paddle.down, "l")
 screen.onkey(r_paddle.up, "w")
 screen.onkey(r_paddle.down, "s")
+screen.onkey(lambda: globals().update(game_is_on=False), "q")
 
 
 def determine_winner():
@@ -46,8 +48,8 @@ def determine_winner():
         r_paddle.reset()
 
 
-game_is__on = True
-while game_is__on:
+
+while game_is_on:
     time.sleep(speed)
     screen.update()
     
@@ -68,4 +70,3 @@ while game_is__on:
         score_board.increse_score_paddle_r()
     determine_winner()
 
-screen.exitonclick()
